@@ -8,7 +8,6 @@ function App() {
 
   return (
     <>
-      <h1>Shopify app</h1>
       <Header/>
       <Outlet/>
     </>

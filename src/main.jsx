@@ -1,25 +1,27 @@
-import { StrictMode } from 'react'
+import { StrictMode ,lazy, Suspense} from 'react'
 import { createRoot } from 'react-dom/client'
-import NotFound from './components/NotFound.jsx'
 import './index.css'
-import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProductDetail from './components/ProductDetail.jsx'
-import ProductList from './components/ProductList.jsx'
-import Cart from './components/Cart.jsx'
-import Checkout from './components/Checkout.jsx'
 import { Provider } from 'react-redux'
 import { store } from './utils/store.js'
 
+const ProductList = lazy(()=>import('./components/ProductList.jsx'))
+const ProductDetail = lazy(()=>import('./components/ProductDetail.jsx'))
+const Cart = lazy(()=>import('./components/Cart.jsx'))
+const Checkout = lazy(()=>import('./components/Checkout.jsx'))
+const NotFound = lazy(()=>import('./components/NotFound.jsx'))
+const App = lazy(()=>import('./App.jsx'))
 
 const appRouter =  createBrowserRouter([
   {
     path:"/",
-    element:<App/>,
+    element:<Suspense fallback={<div>Loading...</div>}>
+      <App/>
+    </Suspense>,
     children:[
       {
         path:"/",
-        element:<ProductList/>,
+        element:<ProductList/>
       },
       {
         path:"/product/:id",

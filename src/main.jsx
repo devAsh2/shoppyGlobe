@@ -15,28 +15,46 @@ const App = lazy(()=>import('./App.jsx'))
 const appRouter =  createBrowserRouter([
   {
     path:"/",
-    element:<Suspense fallback={<div>Loading...</div>}>
-      <App/>
-    </Suspense>,
+    element:<App/>,
     children:[
       {
         path:"/",
-        element:<ProductList/>
+        element:(
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProductList/>
+          </Suspense>
+        )
       },
       {
         path:"/product/:id",
-        element:<ProductDetail/>,
+        element:(
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProductDetail/>
+          </Suspense>
+        ),
       },
       {
         path:"/cart",
-        element:<Cart/>
+        element:(
+          <Suspense fallback={<div>Loading...</div>}>
+            <Cart/>
+          </Suspense>
+        )
       },
       {
         path:"/checkout",
-        element:<Checkout/>
+        element:(
+          <Suspense fallback={<div>Loading...</div>}>
+            <Checkout/>
+          </Suspense>
+        )
       }
     ],
-    errorElement:<NotFound/>
+    errorElement:(
+      <Suspense fallback={<div>Loading...</div>}>
+        <NotFound/>
+      </Suspense>
+    )
   }
 ])
 

@@ -13,7 +13,7 @@ export const registerUser = async (req, res) => {
         }
 
         // Check if user already exists
-        const existingUser = await User.findOne({
+        const existingUser = await user.findOne({
             $or: [{ email }, { username }]
         });
 

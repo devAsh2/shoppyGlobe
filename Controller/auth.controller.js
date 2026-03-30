@@ -7,8 +7,13 @@ export const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
+        // Validate that username and email are provided
+        if (!username || !email) {
+            return res.status(400).json({ error: 'Username and email are required' });
+        }
+
         // Check if user already exists
-        const existingUser = await user.findOne({
+        const existingUser = await User.findOne({
             $or: [{ email }, { username }]
         });
 

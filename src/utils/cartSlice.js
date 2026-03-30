@@ -60,6 +60,6 @@ export const selectCartItems = (state) => state.cart.items;
 export const selectCartTotalQuantity = (state) =>
   state.cart.items.reduce((sum, i) => sum + i.quantity, 0);
 export const selectCartTotalPrice = (state) =>
-  state.cart.items.reduce((sum, i) => sum + i.quantity * i.price, 0);
+  state.cart.items.reduce((sum, i) => sum + i.quantity + i.price, 0);
 
 export default cartSlice.reducer;
